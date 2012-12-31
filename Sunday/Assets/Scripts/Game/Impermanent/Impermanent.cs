@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Impermanent : DoctorObject {
 	
+	public enum eImpType {Obstacle,Patient,Teleporter};
+	
 	public int m_nDefaultCol = -1;
 	public int m_nDefaultRow = -1;
 	
@@ -13,8 +15,9 @@ public class Impermanent : DoctorObject {
 	
 	public Visual m_pVisualPrefab;
 	
-	private Visual m_pVisual;
+	protected eImpType m_eType;
 	
+	private Visual m_pVisual;
 	private bool m_bIsHealing;
 	
 	public override void Initialize ()
@@ -53,6 +56,11 @@ public class Impermanent : DoctorObject {
 		
 		m_pVisual.SetAlpha(m_fCurrentHealth / m_fMaxHealth);
 		
+	}
+	
+	public eImpType GetImpType()
+	{
+		return m_eType;
 	}
 	
 	public virtual void OnDeath()

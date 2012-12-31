@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class Teleporter : Impermanent {
+public class Obstacle : Impermanent {
 
 	public override void Initialize ()
 	{
 		base.Initialize ();
-		m_eType = Impermanent.eImpType.Teleporter;
+		m_eType = Impermanent.eImpType.Obstacle;
 	}
 	
 	public override void UpdateObject (float dt)

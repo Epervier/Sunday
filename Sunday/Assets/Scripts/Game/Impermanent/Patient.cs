@@ -3,13 +3,14 @@ using System.Collections;
 
 public class Patient : Impermanent {
 
-	// Use this for initialization
-	void Start () {
-	
+	public override void Initialize ()
+	{
+		base.Initialize ();
+		m_eType = Impermanent.eImpType.Patient;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public override void UpdateObject (float dt)
+	{
+		base.UpdateObject (dt);
 	}
 }
