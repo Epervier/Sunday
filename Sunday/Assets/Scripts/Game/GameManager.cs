@@ -5,7 +5,13 @@ public class GameManager : MonoBehaviour {
 	
 	public HexGrid m_pHexGrid;
 	public GameObject m_pDefaultThings;
+	public UILabel m_pScoreLabel;
+	public UILabel m_pGameOverLabel;
+	
 	private Impermanent[] m_pImps;
+	
+	private int m_nScore;
+	
 	
 	// Use this for initialization
 	void Start () {

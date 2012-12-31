@@ -1,6 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\DoctorObject.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Game\DoctorObject.cs" Line="17" Column="1" />
+      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\HexGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\HexItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\HealingArea.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\PlayerCursor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\Impermanent\Impermanent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\Impermanent\Patient.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\Impermanent\Teleporter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\Visual.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menus\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menus\CreditsMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Menus\SettingsMenu.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

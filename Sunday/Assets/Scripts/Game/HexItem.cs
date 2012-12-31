@@ -26,6 +26,8 @@ public class HexItem : DoctorObject {
 		set
 		{
 			m_pChild = value;
+			if( m_pChild == null)
+				return;
 			m_pChild.transform.parent = this.transform;
 			TweenPosition.Begin(m_pChild.gameObject, 0.1f, new Vector3(0,0,0) );
 		}

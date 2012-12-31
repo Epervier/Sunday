@@ -7,7 +7,7 @@ public class HexGrid : DoctorObject {
 	public int m_nRows = 14;
 	
 	public int m_nHexWidth = 50;
-	public int m_nHexHeight = 50;
+	public int m_nHexHeight = -50;
 	
 	public Color32 m_cHealingColor;
 	public Color32 m_cBaseColor;
@@ -119,15 +119,31 @@ public class HexGrid : DoctorObject {
 	
 	public void HandleDrag(HexItem pFirst, HexItem pSecond)
 	{
+		if( pFirst.Child == null)
+			return;
+		
 		if( pSecond.IsAdjacent(pFirst) )
 		{
-			pSecond.SetColor(m_cTargetColor);
-//			pFirst.SetColor(m_cBaseColor);
+			if( pSecond.Child != null )
+			{
+				if( pSecond.Child.GetImpType() == Impermanent.eImpType.Teleporter )
+				{
+					
+				}
+				else
+				{
+					
+				}
+			}
+			else
+			{
+				pSecond.Child = pFirst.Child;
+				pFirst.Child = null;
+			}
 		}
 		else
 		{
-//			pFirst.SetColor(m_cBaseColor);
-			pSecond.SetColor(m_cFromColor);
+			
 		}
 	}
 }
