@@ -52,7 +52,9 @@ public class HexGrid : DoctorObject {
 				m_pHexes[i,j].UpdateObject(dt);
 			}
 		}
-		GameObject go = PickObject();
+		GameObject go = null;
+		if( Input.GetMouseButton(0) )
+			go = PickObject();
 		
 		if( go != null)
 		{

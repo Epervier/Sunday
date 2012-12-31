@@ -13,6 +13,6 @@ public class MainMenu : MenuBase {
 	
 	public void PlayClicked()
 	{
-		
+		Application.LoadLevel("Game");
 	}
 }
