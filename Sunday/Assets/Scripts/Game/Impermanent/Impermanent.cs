@@ -14,16 +14,29 @@ public class Impermanent : DoctorObject {
 	public float m_fCurrentHealth = 75.0f;
 	
 	public Visual m_pVisualPrefab;
+	public float m_fMoveBaseTime = 0.1f;
+	public float m_fMoveTimer = 0.0f;
+	
+	
+	public delegate void OnItemDeath(Impermanent pItem);
+	protected OnItemDeath m_pItemDeath;
+	
+	public delegate void OnTeleported(Impermanent pItem);
+	protected OnTeleported m_pTeleported;
 	
 	protected eImpType m_eType;
 	
-	private Visual m_pVisual;
+	protected Visual m_pVisual;
 	private bool m_bIsHealing;
-	private bool m_bIsDead = false;
+	protected bool m_bIsDead = false;
 	
-	public override void Initialize ()
+	public virtual void Initialize (OnItemDeath pOnDeath, OnTeleported pOnTele)
 	{
 		base.Initialize ();
+		
+		m_pItemDeath = pOnDeath;
+		m_pTeleported = pOnTele;
+		
 		if( m_pVisualPrefab != null)
 		{
 			GameObject go = NGUITools.AddChild(this.gameObject, m_pVisualPrefab.gameObject);
@@ -59,7 +72,19 @@ public class Impermanent : DoctorObject {
 		}
 		
 		m_pVisual.SetAlpha(m_fCurrentHealth / m_fMaxHealth);
+		if( m_fMoveTimer > 0.0f)
+		{
+			m_fMoveTimer -= dt;
+		}
+	}
+	
+	public void MoveItem(Vector3 pos)
+	{
+		if( m_fMoveTimer > 0.0f)
+			return;
 		
+		TweenPosition.Begin(this.gameObject, m_fMoveBaseTime, pos);
+		m_fMoveTimer = m_fMoveBaseTime + 0.01f;
 	}
 	
 	public eImpType GetImpType()
@@ -70,6 +95,7 @@ public class Impermanent : DoctorObject {
 	public virtual void OnDeath()
 	{
 		m_bIsDead = true;
+		m_pItemDeath(this);
 	}
 	
 	public virtual void OnTeleport()

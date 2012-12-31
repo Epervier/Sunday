@@ -11,8 +11,8 @@ public class HexItem : DoctorObject {
 	
 	public bool m_bIsHealing = false;
 	
-	public delegate void HandleClick(HexItem pItem);
-	private HandleClick m_pClick;
+	public delegate void HandlePress(HexItem pItem, bool bUp);
+	private HandlePress m_pClick;
 	
 	public delegate void HandleDrop(HexItem pFirst, HexItem pSecond);
 	private HandleDrop m_pOnDrop;
@@ -29,11 +29,11 @@ public class HexItem : DoctorObject {
 			if( m_pChild == null)
 				return;
 			m_pChild.transform.parent = this.transform;
-			TweenPosition.Begin(m_pChild.gameObject, 0.1f, new Vector3(0,0,0) );
+			m_pChild.MoveItem(new Vector3(0,0,0) );
 		}
 	}
 	
-	public void Initialize (int nCol, int nRow, HandleDrop pDrop, HandleClick pClick)
+	public void Initialize (int nCol, int nRow, HandleDrop pDrop, HandlePress pClick)
 	{
 		base.Initialize ();
 		
@@ -54,20 +54,20 @@ public class HexItem : DoctorObject {
 		m_bIsHealing = false;
 	}
 	
-	public void OnClick()
+	public void OnPress(bool bUp)
 	{
 		if( m_pClick != null)
-			m_pClick(this);
+			m_pClick(this, bUp);
 	}
 	
 	public void OnDrop(GameObject drag)
 	{
-		if( m_pOnDrop != null)
-		{
-			HexItem item = drag.GetComponent<HexItem>();
-			if( item != null)
-				m_pOnDrop(item, this);
-		}
+//		if( m_pOnDrop != null)
+//		{
+//			HexItem item = drag.GetComponent<HexItem>();
+//			if( item != null)
+//				m_pOnDrop(item, this);
+//		}
 	}
 	
 	private bool IsEven(int nVal)

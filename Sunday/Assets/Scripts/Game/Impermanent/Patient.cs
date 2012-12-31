@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Patient : Impermanent {
 
-	public override void Initialize ()
+	public override void Initialize (OnItemDeath pOnDeath, OnTeleported pOnTele)
 	{
-		base.Initialize ();
+		base.Initialize (pOnDeath, pOnTele);
 		m_eType = Impermanent.eImpType.Patient;
 	}
 	
@@ -14,8 +14,10 @@ public class Patient : Impermanent {
 		base.UpdateObject (dt);
 	}
 	
-	public virtual void OnTeleport()
+	public override void OnTeleport()
 	{
-		
+		m_pTeleported(this);
+		m_pVisual.SetAlpha(0);
+		m_bIsDead = true;
 	}
 }

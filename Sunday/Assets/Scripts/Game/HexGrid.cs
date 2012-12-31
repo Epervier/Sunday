@@ -18,6 +18,8 @@ public class HexGrid : DoctorObject {
 	
 	private HexItem[,] m_pHexes;
 	
+	private Impermanent m_pCurrentItem;
+	
 	public override void Initialize ()
 	{
 		base.Initialize ();
@@ -33,7 +35,7 @@ public class HexGrid : DoctorObject {
 				go.transform.localPosition = new Vector3(nStartX + i * m_nHexWidth + nOdd * m_nHexWidth * 0.5f, nStartY + j * m_nHexHeight);
 				
 				HexItem item = go.GetComponent<HexItem>();
-				item.Initialize(i, j, HandleDrag,HandleClick);
+				item.Initialize(i, j, HandleDrag,HandlePress);
 				item.SetColor(m_cBaseColor);
 				m_pHexes[i,j] = item;
 				
@@ -75,6 +77,15 @@ public class HexGrid : DoctorObject {
 						}
 					}
 				}
+				
+				if(m_pCurrentItem != null)
+				{
+					HexItem oldParent = m_pCurrentItem.transform.parent.GetComponent<HexItem>();
+					if( oldParent != null && oldParent != pItem )
+					{
+						HandleDrag(oldParent, pItem);
+					}
+				}
 			}
 		}
 		
@@ -112,14 +123,17 @@ public class HexGrid : DoctorObject {
 			m_pHexes[pChild.m_nDefaultCol, pChild.m_nDefaultRow].Child = pChild;
 	}
 	
-	public void HandleClick(HexItem pItem)
+	public void HandlePress(HexItem pItem, bool bUp)
 	{
-		
+		if( bUp == false)
+			m_pCurrentItem = null;
+		else
+			m_pCurrentItem = pItem.Child;
 	}
 	
 	public void HandleDrag(HexItem pFirst, HexItem pSecond)
 	{
-		if( pFirst.Child == null)
+		if( pFirst.Child == null || pFirst.Child.GetImpType() != Impermanent.eImpType.Patient )
 			return;
 		
 		if( pSecond.IsAdjacent(pFirst) )
@@ -128,14 +142,14 @@ public class HexGrid : DoctorObject {
 			{
 				if( pSecond.Child.GetImpType() == Impermanent.eImpType.Teleporter )
 				{
-					
+					pFirst.Child.OnTeleport();
 				}
 				else
 				{
 					
 				}
 			}
-			else
+			else 
 			{
 				pSecond.Child = pFirst.Child;
 				pFirst.Child = null;

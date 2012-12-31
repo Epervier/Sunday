@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Teleporter : Impermanent {
 
-	public override void Initialize ()
+	public override void Initialize(OnItemDeath pOnDeath, OnTeleported pOnTele)
 	{
-		base.Initialize ();
+		base.Initialize (pOnDeath, pOnTele);
 		m_eType = Impermanent.eImpType.Teleporter;
 	}
 	

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 		m_pHexGrid.Initialize();
 		m_pImps = m_pDefaultThings.GetComponentsInChildren<Impermanent>();
 		for (int i = 0; i < m_pImps.Length; i++) {
-			m_pImps[i].Initialize();
+			m_pImps[i].Initialize(OnItemDeath, OnTeleported);
 			m_pHexGrid.SetChildDefault(m_pImps[i]);
 		}
 	}
@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour {
 			return;
 		
 		hItem.Child = null;
+		if( pItem.GetImpType() == Impermanent.eImpType.Patient)
+		{
+			m_nScore--;
+			m_pScoreLabel.text = string.Format("Score: {0}", m_nScore);
+		}
 	}
 	
 	public void OnTeleported(Impermanent pItem)
@@ -47,7 +52,11 @@ public class GameManager : MonoBehaviour {
 		
 		hItem.Child = null;
 		
+		
 		pItem.transform.localPosition = new Vector3(0,-1000,0);
 		NGUITools.SetActive(pItem.gameObject, false);
+		
+		m_nScore++;
+		m_pScoreLabel.text = string.Format("Score: {0}", m_nScore);
 	}
 }
