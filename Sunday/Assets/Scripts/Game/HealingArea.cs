@@ -3,13 +3,13 @@ using System.Collections;
 
 public class HealingArea : DoctorObject {
 
-	// Use this for initialization
-	void Start () {
-	
+	public override void Initialize ()
+	{
+		base.Initialize ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public override void UpdateObject (float dt)
+	{
+		base.UpdateObject (dt);
 	}
 }

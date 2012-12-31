@@ -2,14 +2,21 @@ using UnityEngine;
 using System.Collections;
 
 public class Visual : DoctorObject {
-
-	// Use this for initialization
-	void Start () {
 	
+	public UISprite m_pSprite;
+	
+	public override void Initialize ()
+	{
+		base.Initialize ();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	public override void UpdateObject (float dt)
+	{
+		base.UpdateObject (dt);
+	}
 	
+	public void SetAlpha(float fAlpha)
+	{
+		m_pSprite.alpha = fAlpha;
 	}
 }

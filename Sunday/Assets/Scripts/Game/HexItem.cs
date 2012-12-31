@@ -7,8 +7,12 @@ public class HexItem : DoctorObject {
 	public int m_nRow = -1;
 	
 	public UISprite m_pImage;
+//	public UILabel m_pLabel;
 	
 	public bool m_bIsHealing = false;
+	
+	public delegate void HandleClick(HexItem pItem);
+	private HandleClick m_pClick;
 	
 	public delegate void HandleDrop(HexItem pFirst, HexItem pSecond);
 	private HandleDrop m_pOnDrop;
@@ -27,26 +31,31 @@ public class HexItem : DoctorObject {
 		}
 	}
 	
-	public void Initialize (int nCol, int nRow, HandleDrop pDrop)
+	public void Initialize (int nCol, int nRow, HandleDrop pDrop, HandleClick pClick)
 	{
 		base.Initialize ();
 		
 		m_nColumn = nCol;
 		m_nRow = nRow;
 		
+		m_pClick = pClick;
 		m_pOnDrop = pDrop;
+//		m_pLabel.text = string.Format("{0},{1}", nCol, nRow);
 	}
 	
 	public override void UpdateObject (float dt)
 	{
 		base.UpdateObject (dt);
-		m_bIsHealing = true;
+//		m_bIsHealing = true;
 		if( m_pChild != null)
 			m_pChild.UpdateObject(dt, m_bIsHealing);
+		m_bIsHealing = false;
 	}
 	
 	public void OnClick()
 	{
+		if( m_pClick != null)
+			m_pClick(this);
 	}
 	
 	public void OnDrop(GameObject drag)
@@ -77,14 +86,22 @@ public class HexItem : DoctorObject {
 			bResult = Mathf.Abs(m_nColumn - item.m_nColumn) == 1;
 		}
 		
-		int nDeltaCol = Mathf.Abs(m_nColumn - item.m_nColumn);
-//		int nDeltaRow = Mathf.Abs(m_nRow - item.m_nRow) * 2;
+//		int nDeltaCol = Mathf.Abs(m_nColumn - item.m_nColumn);
+//		
+//		if( nDeltaCol == 1)
+//		{
+//			if( IsEven(m_nColumn) && m_nRow - 1 == item.m_nRow)
+//				bResult = true;
+//			if( IsEven(m_nColumn) == false && m_nRow + 1 == item.m_nRow)
+//				bResult = true;
+//		}
 		
-		if( nDeltaCol == 1)
+		int nDeltaRow = Mathf.Abs(m_nRow - item.m_nRow);
+		if( nDeltaRow == 1)
 		{
-			if( IsEven(nDeltaCol) && m_nRow + 1 == item.m_nRow)
+			if( IsEven(m_nRow) && m_nColumn + 1 == item.m_nColumn)
 				bResult = true;
-			if( IsEven(nDeltaCol) == false && m_nRow -1 == item.m_nRow)
+			if( IsEven(m_nRow) == false && m_nColumn - 1 == item.m_nColumn)
 				bResult = true;
 		}
 		

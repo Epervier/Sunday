@@ -3,18 +3,31 @@ using System.Collections;
 
 public class Impermanent : DoctorObject {
 	
+	public int m_nDefaultCol = -1;
+	public int m_nDefaultRow = -1;
+	
 	public float m_fDeathPerSecond = 1.0f;
 	public float m_fHealPerSecond = 3.0f;
 	public float m_fMaxHealth = 100.0f;
 	public float m_fCurrentHealth = 50.0f;
 	
-	public Visual m_pVisual;
+	public Visual m_pVisualPrefab;
+	
+	private Visual m_pVisual;
 	
 	private bool m_bIsHealing;
 	
 	public override void Initialize ()
 	{
 		base.Initialize ();
+		if( m_pVisualPrefab != null)
+		{
+			GameObject go = NGUITools.AddChild(this.gameObject, m_pVisualPrefab.gameObject);
+			go.name = "Visual";
+			m_pVisual = go.GetComponent<Visual>();
+			m_pVisual.Initialize();
+			m_pVisual.transform.localPosition = new Vector3(0,0,-10);
+		}
 	}
 	
 	public void UpdateObject (float dt, bool bIsHealing)
@@ -24,19 +37,21 @@ public class Impermanent : DoctorObject {
 		
 		if( m_bIsHealing )
 		{
-			m_fCurrentHealth = m_fHealPerSecond * dt;
+			m_fCurrentHealth += m_fHealPerSecond * dt;
 			if( m_fCurrentHealth > m_fMaxHealth )
 				m_fCurrentHealth = m_fMaxHealth;
 		}
 		else
 		{
-			m_fCurrentHealth = m_fDeathPerSecond * dt;
+			m_fCurrentHealth -= m_fDeathPerSecond * dt;
 		}
 		
 		if( m_fCurrentHealth <= 0 )
 		{
 			OnDeath();
 		}
+		
+		m_pVisual.SetAlpha(m_fCurrentHealth / m_fMaxHealth);
 		
 	}
 	
