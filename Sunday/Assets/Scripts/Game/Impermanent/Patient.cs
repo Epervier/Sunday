@@ -13,4 +13,9 @@ public class Patient : Impermanent {
 	{
 		base.UpdateObject (dt);
 	}
+	
+	public virtual void OnTeleport()
+	{
+		
+	}
 }

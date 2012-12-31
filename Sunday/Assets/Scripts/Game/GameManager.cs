@@ -29,4 +29,25 @@ public class GameManager : MonoBehaviour {
 		if( m_pHexGrid != null )
 			m_pHexGrid.UpdateObject(dt);
 	}
+	
+	public void OnItemDeath(Impermanent pItem)
+	{
+		HexItem hItem = pItem.transform.parent.GetComponent<HexItem>();
+		if( hItem == null)
+			return;
+		
+		hItem.Child = null;
+	}
+	
+	public void OnTeleported(Impermanent pItem)
+	{
+		HexItem hItem = pItem.transform.parent.GetComponent<HexItem>();
+		if( hItem == null)
+			return;
+		
+		hItem.Child = null;
+		
+		pItem.transform.localPosition = new Vector3(0,-1000,0);
+		NGUITools.SetActive(pItem.gameObject, false);
+	}
 }

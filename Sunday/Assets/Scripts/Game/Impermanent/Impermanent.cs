@@ -8,10 +8,10 @@ public class Impermanent : DoctorObject {
 	public int m_nDefaultCol = -1;
 	public int m_nDefaultRow = -1;
 	
-	public float m_fDeathPerSecond = 1.0f;
-	public float m_fHealPerSecond = 3.0f;
+	public float m_fDeathPerSecond = 2.0f;
+	public float m_fHealPerSecond = 5.0f;
 	public float m_fMaxHealth = 100.0f;
-	public float m_fCurrentHealth = 50.0f;
+	public float m_fCurrentHealth = 75.0f;
 	
 	public Visual m_pVisualPrefab;
 	
@@ -19,6 +19,7 @@ public class Impermanent : DoctorObject {
 	
 	private Visual m_pVisual;
 	private bool m_bIsHealing;
+	private bool m_bIsDead = false;
 	
 	public override void Initialize ()
 	{
@@ -36,6 +37,9 @@ public class Impermanent : DoctorObject {
 	public void UpdateObject (float dt, bool bIsHealing)
 	{
 		base.UpdateObject (dt);
+		if( m_bIsDead == true)
+			return;
+		
 		m_bIsHealing = bIsHealing;
 		
 		if( m_bIsHealing )
@@ -64,6 +68,11 @@ public class Impermanent : DoctorObject {
 	}
 	
 	public virtual void OnDeath()
+	{
+		m_bIsDead = true;
+	}
+	
+	public virtual void OnTeleport()
 	{
 		
 	}
