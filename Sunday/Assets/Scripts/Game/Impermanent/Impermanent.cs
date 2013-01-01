@@ -12,11 +12,12 @@ public class Impermanent : DoctorObject {
 	public float m_fHealPerSecond = 5.0f;
 	public float m_fMaxHealth = 100.0f;
 	public float m_fCurrentHealth = 75.0f;
+	public int m_nDeathCost = 0;
+	public int m_nSaveBonus = 0;
+	
+	public bool m_bIsDead = false;
 	
 	public Visual m_pVisualPrefab;
-	public float m_fMoveBaseTime = 0.1f;
-	public float m_fMoveTimer = 0.0f;
-	
 	
 	public delegate void OnItemDeath(Impermanent pItem);
 	protected OnItemDeath m_pItemDeath;
@@ -25,10 +26,12 @@ public class Impermanent : DoctorObject {
 	protected OnTeleported m_pTeleported;
 	
 	protected eImpType m_eType;
-	
 	protected Visual m_pVisual;
+	
+	private float m_fMoveBaseTime = 0.1f;
+	private float m_fMoveTimer = 0.0f;
+	
 	private bool m_bIsHealing;
-	protected bool m_bIsDead = false;
 	
 	public virtual void Initialize (OnItemDeath pOnDeath, OnTeleported pOnTele)
 	{
@@ -84,7 +87,7 @@ public class Impermanent : DoctorObject {
 			return;
 		
 		TweenPosition.Begin(this.gameObject, m_fMoveBaseTime, pos);
-		m_fMoveTimer = m_fMoveBaseTime + 0.01f;
+		m_fMoveTimer = m_fMoveBaseTime;
 	}
 	
 	public eImpType GetImpType()

@@ -1,22 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\Impermanent\Patient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\HealingArea.cs">
     <Files>
-      <File FileName="Assets\Scripts\Game\DoctorObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="50" Column="3" />
-      <File FileName="Assets\Scripts\Game\HexGrid.cs" Line="136" Column="1" />
-      <File FileName="Assets\Scripts\Game\HexItem.cs" Line="55" Column="3" />
       <File FileName="Assets\Scripts\Game\HealingArea.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\PlayerCursor.cs" Line="8" Column="22" />
-      <File FileName="Assets\Scripts\Game\Impermanent\Impermanent.cs" Line="74" Column="21" />
-      <File FileName="Assets\Scripts\Game\Impermanent\Patient.cs" Line="11" Column="2" />
+      <File FileName="Assets\Scripts\Game\DoctorObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\HexGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\HexItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\PlayerCursor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\Impermanent\Impermanent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Game\Impermanent\Patient.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Game\Impermanent\Teleporter.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Game\Visual.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\TroyLT\Documents\GitHub\Sunday\Sunday\Assets\Scripts\Game\Impermanent\Impermanent.cs" line="97" />
       <Breakpoint file="C:\Users\TroyLT\Documents\GitHub\Sunday\Sunday\Assets\Scripts\Game\HexGrid.cs" line="86" />
       <Breakpoint file="C:\Users\TroyLT\Documents\GitHub\Sunday\Sunday\Assets\Scripts\Game\HexGrid.cs" line="154" />
       <Breakpoint file="C:\Users\TroyLT\Documents\GitHub\Sunday\Sunday\Assets\Scripts\Game\HexGrid.cs" line="141" />
